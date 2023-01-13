@@ -14,11 +14,12 @@ runs:
 
         if [ -z ${removed_branch} ]
         then
-          echo "branch-name not set"
-          echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
-        else
-          echo "branch-name is set"
-          echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
+          removed_branch=${GITHUB_REF_NAME}
+          # echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
+        # else
+        #   echo "branch-name is set"
+        #   echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
         fi
+          echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
 
         
