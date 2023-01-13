@@ -1,12 +1,15 @@
 name: change branch name 
 description: 'replace slash / to dash - in branch name, then assign to env.branch_name'
-  
+inputs:
+  branch-name:
+    description: 'the name of the branch'
+    default: ${{ GITHUB_REF_NAME }}
+
 runs:
   using: composite
   steps:
     - shell: bash
       name: replace / to -
       run: |
-        echo "branch_name=${${{ github.event.ref }}////-}" >> $GITHUB_ENV
-        # removed_branch=${{ github.event.ref }}
-        # echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
+        removed_branch=${{ branch-name }}
+        echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
