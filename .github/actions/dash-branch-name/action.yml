@@ -14,5 +14,7 @@ runs:
         if [ -z ${removed_branch+z} ]
         then
           echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
+        else
+          echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
         fi
-        echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
+        
