@@ -11,5 +11,5 @@ runs:
     - shell: bash
       name: replace / to -
       run: |
-        removed_branch=${{ branch-name }}
+        removed_branch=${{ inputs.branch-name }}
         echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
