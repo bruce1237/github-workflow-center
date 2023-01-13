@@ -3,7 +3,7 @@ description: 'replace slash / to dash - in branch name, then assign to env.branc
 inputs:
   branch-name:
     description: 'the name of the branch'
-    default: ${{ GITHUB_REF_NAME }}
+    default: GITHUB_REF_NAME
 
 runs:
   using: composite
