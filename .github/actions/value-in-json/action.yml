@@ -20,7 +20,7 @@ runs:
 
           if [ $(_jq '.address.zipcode') == '76495-3109' ]
           then
-            city_name=$(_jq '.city')
+            city_name=$(_jq '.address.city')
           fi
         done
 
