@@ -7,5 +7,5 @@ runs:
     - shell: bash
       name: replace / to -
       run: |
-        echo ${{ github.event.ref////- }}
-        echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
+        removed_branch=${{ github.event.ref }}
+        echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
