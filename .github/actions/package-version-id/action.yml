@@ -16,7 +16,7 @@ runs:
 
         echo ${json_data}
 
-        for record in $(echo "${json_data" | jq -r '.[] | @base64')
+        for record in $(echo "${json_data}" | jq -r '.[] | @base64')
         do
           _jq(){
             echo ${record} | base64 --decode | jq -r ${1}
