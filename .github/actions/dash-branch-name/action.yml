@@ -13,7 +13,6 @@ runs:
         removed_branch=${{ inputs.branch-name }}
         if [ -z ${removed_branch+z} ]
         then
-          removed_branch=${echo GITHUB_REF_NAME}
+          echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
         fi
-        echo branch name is ${removed_branch} X
         echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
