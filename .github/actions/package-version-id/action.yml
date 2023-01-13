@@ -35,5 +35,7 @@ runs:
           done
         done
 
+        echo this is the version-id: ${version_id} EEE
+
 
         echo "package_version_id=${version_id}" >> $GITHUB_ENV
