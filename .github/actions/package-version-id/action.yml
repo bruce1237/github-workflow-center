@@ -1,0 +1,31 @@
+name: 'get package version id by tag'
+description: 'get package version by tag'
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        json_data=$(
+          curl \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: bearer ${{ github.token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/orgs/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }}/versions \
+        )
+
+        echo ${json_data}
+
+        for record in $(echo "${json_data" | jq -r '.[] | @base64')
+        do
+          _jq(){
+            echo ${record} | base64 --decode | jq -r ${1}
+          }
+
+          if [ $(_jq '.metadata.container.tags[0]') == ${{ env.branch_name }} ]
+          then
+            version_id = $(_jq '.id')
+          fi
+        done
+
+        echo "package_version_id=${version_id}" >> $GITHUB_ENV
