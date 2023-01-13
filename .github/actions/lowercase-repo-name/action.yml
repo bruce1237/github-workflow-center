@@ -1,0 +1,9 @@
+name: lowercase-repo-name
+description: convert repo name into lowercase
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: echo "repo_name=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      

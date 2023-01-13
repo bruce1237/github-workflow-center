@@ -1,0 +1,28 @@
+name: value-in-json
+description: find value from json
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+      json_data=$(
+        curl https://jsonplaceholder.typicode.com/users 
+      )
+
+      echo ${json_data}
+
+      for record in $(echo "${json_data}" | jq -r '.[] | @base64')
+      do
+        _jq(){
+          echo ${record} | base64 --decode | jq -r ${1}      
+        }
+
+        if [ $(_jq '.address.zipcode') == '76495-3109' ]
+        then
+          city_name=$(_jq '.city')
+        fi
+        done
+
+        echo "city_name=${city_name}" >> $GITHUB_ENV
+  

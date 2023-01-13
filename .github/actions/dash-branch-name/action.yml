@@ -1,0 +1,9 @@
+name: change branch name 
+description: 'replace slash / to dash - in branch name, then assign to env.branch_name'
+  
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      name: replace / to -
+      run: echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV

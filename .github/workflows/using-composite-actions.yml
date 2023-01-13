@@ -1,0 +1,30 @@
+name: using composite actions
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  using-composite-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: get lowercase repo name
+        uses: bruce1237/github-workflow-center/.github/actions/lowercase-repo-name@main
+      
+      - name: output repo name in lowercase
+        run: echo ${{ env.repo_name }}
+
+      - name: get dash-branch-name
+        uses: bruce1237/github-workflow-center/.github/actions/dash-branch-name@main
+      
+      - name: output branch name in dash
+        run: echo ${{ env.branch_name }}
+
+      - name: get json from web
+        uses: bruce1237/github-workflow-center/.github/actions/value-in-json@main
+
+      - name: output json city name 'Bartholomebury'
+        run: echo ${{ env.city_name }}
+      
+
+  
