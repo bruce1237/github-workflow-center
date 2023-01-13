@@ -16,16 +16,24 @@ runs:
 
         echo ${json_data}
 
+       
         for record in $(echo "${json_data}" | jq -r '.[] | @base64')
         do
           _jq(){
             echo ${record} | base64 --decode | jq -r ${1}
           }
 
-          if [ $(_jq '.metadata.container.tags[0]') == ${{ env.branch_name }} ]
-          then
-            version_id = $(_jq '.id')
-          fi
+          tags=$(_jq '.metadata.container.tags')
+          
+          for tag in $(echo "${tags}" | jq -r '.[] | @base64')
+          do
+            if [ $(echo "${tag}" | base64 --decode) == ${{ env.branch_name }} ]
+            then
+              
+              version_id=$(_jq '.id')
+              fi  
+          done
         done
+
 
         echo "package_version_id=${version_id}" >> $GITHUB_ENV
