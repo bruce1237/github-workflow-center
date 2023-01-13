@@ -11,10 +11,14 @@ runs:
       name: replace / to -
       run: |
         removed_branch=${{ inputs.branch-name }}
+
         if [ -z ${removed_branch+z} ]
         then
+          echo "branch-name not set"
           echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
         else
+          echo "branch-name is set"
           echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
         fi
+
         
