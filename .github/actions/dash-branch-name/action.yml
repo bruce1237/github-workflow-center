@@ -7,5 +7,5 @@ runs:
     - shell: bash
       name: replace / to -
       run: |
-        echo ${GITHUB_REF_NAME
+        echo ${GITHUB_REF_NAME}
         echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
