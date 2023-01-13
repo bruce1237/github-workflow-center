@@ -12,7 +12,7 @@ runs:
       run: |
         removed_branch=${{ inputs.branch-name }}
 
-        if [ -z ${removed_branch+z} ]
+        if [ -z ${removed_branch+x} ]
         then
           echo "branch-name not set"
           echo "branch_name=${GITHUB_REF_NAME////-}" >> $GITHUB_ENV
