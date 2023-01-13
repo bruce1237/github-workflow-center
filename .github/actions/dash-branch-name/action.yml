@@ -15,4 +15,5 @@ runs:
         then
           removed_branch=GITHUB_REF_NAME
         fi
+        echo branch name is ${removed_branch} X
         echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
