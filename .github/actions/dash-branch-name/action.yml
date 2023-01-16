@@ -31,5 +31,5 @@ runs:
         echo "converted_branch=$(echo $removed_branch | sed -e 's/[/_]/-/g')" >> $GITHUB_ENV
 
         echo 'CONVERT COMPLETEED'
-        echo ${converted_branch}
+        echo ${{ env.converted_branch }}
 
