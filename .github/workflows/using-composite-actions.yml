@@ -14,6 +14,9 @@ jobs:
       - name: output repo name in lowercase
         run: echo ${{ env.repo_name }}
 
+      - name: login to docker
+        uses: bruce1237/github-workflow-center/.github/actions/docker-login@main
+
       - name: get dash-branch-name
         uses: bruce1237/github-workflow-center/.github/actions/dash-branch-name@main
       
