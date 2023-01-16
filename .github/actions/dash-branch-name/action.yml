@@ -24,7 +24,7 @@ runs:
     - shell: bash
       name: replace with sed
       run: |
-        removed_branch='brach!@£$%^&*()/<>x.y.z"\±§'
+        removed_branch='brach!@£$%^&*()/<>x.y.z"±§'
 
 
         converted_branch=$(echo $removed_branch | sed -e 's/[#$*@]/-/g')
