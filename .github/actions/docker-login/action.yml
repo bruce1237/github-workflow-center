@@ -3,6 +3,7 @@ description: 'login to docker'
 inputs:
   github_token:
     description: 'used to login to docker'
+    required: true
 
 runs:
   using: composite
