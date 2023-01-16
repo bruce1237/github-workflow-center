@@ -30,6 +30,9 @@ runs:
         converted_branch=$(echo $removed_branch | sed -e 's/[#$*@]/-/g')
         echo "converted_branch=${converted_branch}" >> $GITHUB_ENV
 
+        echo 'CONVERT COMPLETEED'
+        echo ${converted_branch}
+
     - shell: bash
       name: check converted_branch
       run: echo ${{ env.converted_branch }}
