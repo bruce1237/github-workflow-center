@@ -1,0 +1,11 @@
+name: clair-scan
+on:
+  workflow_call:
+    
+jobs:
+  clair-scan:
+   runs-on: ubuntu-latest
+   
+   steps:
+     - name: use clair-scan
+       uses: bruce1237/github-workflow-center/.github/action/clair-scan@main
