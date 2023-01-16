@@ -1,5 +1,8 @@
 name: docker-login
 description: 'login to docker'
+inputs:
+  github_token:
+    description: 'used to login to docker'
 
 runs:
   using: composite
@@ -9,4 +12,4 @@ runs:
       with: 
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ inputs.github_token }}
