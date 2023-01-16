@@ -24,12 +24,11 @@ runs:
     - shell: bash
       name: replace with sed
       run: |
-        removed_branch='brach!@£$%^&*()/<>x.y.z"±§'
+        removed_branch='brach-a/b.c_e/f.g'
 
 
-        converted_branch=$(echo $removed_branch | sed -e 's/[#$*@]/-/g')
         
-        echo "converted_branch=$(echo $removed_branch | sed -e 's/[#$*@]/-/g')" >> $GITHUB_ENV
+        echo "converted_branch=$(echo $removed_branch | sed -e 's/[/_]/-/g')" >> $GITHUB_ENV
 
         echo 'CONVERT COMPLETEED'
         echo ${converted_branch}
