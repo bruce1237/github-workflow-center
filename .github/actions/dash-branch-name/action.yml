@@ -21,5 +21,15 @@ runs:
         #   echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
         fi
           echo "branch_name=${removed_branch////-}" >> $GITHUB_ENV
+    - shell: bash
+      name: replace with sed
+      run: |
+        removed_branch='brach!@£$%^&*()/<>x.y.z"\±§'
 
-        
+
+        converted_branch=$(echo $removed_branch | sed -e 's/[#$*@]/-/g')
+        echo "converted_branch=${converted_branch}" >> $GITHUB_ENV
+
+    - shell: bash
+      name: check converted_branch
+      run: echo ${{ env.converted_branch }}
