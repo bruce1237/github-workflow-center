@@ -12,6 +12,11 @@ jobs:
         with:
           user_name: 'this-is-user-name-value'
 
+      - name: check output same runner
+        run: echo age is ${{ steps.using-input.outputs.random-number }}
+    
+
+
   checking-output:
     runs-on: ubuntu-latest
     needs: using-input
