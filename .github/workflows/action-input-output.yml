@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: calling input action
         uses: bruce1237/github-workflow-center/.github/actions/input-output@main
+        with:
+          user_name: 'this-is-user-name-value'
 
   checking-output:
     runs-on: ubuntu-latest
