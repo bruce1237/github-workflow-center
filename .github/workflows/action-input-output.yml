@@ -6,6 +6,9 @@ jobs:
   using-input:
     runs-on: ubuntu-latest
 
+    outputs:
+      output1: ${{ steps.second-stp.outputs.sec-out }}
+
     steps:
       - name: calling input action
         id: first-stp
@@ -13,9 +16,13 @@ jobs:
         with:
           user_name: 'this-is-user-name-value'
 
-      - name: check output same runner
+      - name: check output same runner 
         run: echo age is ${{ steps.first-stp.outputs.random-number }}
-    
+      - name: assign the step output to job output
+        id: second-stp
+        run: |
+          echo "sec-out=${{ steps.first-stp.outputs.random-number }}" >> $GITHUB_OUTPUT
+
 
 
   checking-output:
@@ -24,5 +31,5 @@ jobs:
 
     steps:
       - name: check out put
-        run: echo age is ${{ needs.using-input.outputs.random-number }}
+        run: echo age is ${{ needs.using-input.outputs.output1 }}
     
