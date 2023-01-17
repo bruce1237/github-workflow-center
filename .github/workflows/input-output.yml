@@ -1,6 +1,11 @@
 name: using-input-output
 on:
   workflow_call:
+    inputs:
+      input_var:
+        description: "this is the input"
+        required: false
+        type: string
    
 jobs:
   using-input:
@@ -18,6 +23,9 @@ jobs:
 
       - name: check output same runner 
         run: echo age is ${{ steps.first-stp.outputs.random-number }}
+
+      - name: checking workflow input
+        run: echo ${{ inputs.input_var }}
         
       - name: assign the step output to job output
         id: second-stp
