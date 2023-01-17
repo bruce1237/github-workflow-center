@@ -6,8 +6,8 @@ inputs:
     description: "the name of user"
 
 outputs:
-  user_age:
-    description: 'the age of user'
+  user_age: ${{ steps.test-in-out-put.outputs.user_age }}
+    
 
 runs:
   using: composite
