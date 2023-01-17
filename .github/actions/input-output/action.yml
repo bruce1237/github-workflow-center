@@ -6,7 +6,9 @@ inputs:
     description: "the name of user"
 
 outputs:
-  user_age: ${{ steps.test-in-out-put.outputs.user_age }}
+  user_age: 
+    description: 'the age of user'
+    value: ${{ steps.test-in-out-put.outputs.user_age }}
     
 
 runs:
