@@ -1,0 +1,21 @@
+name: test-input-output
+description: 'test action input output'
+
+inputs:
+  user_name:
+    description: "the name of user"
+
+outputs:
+  user_age: ${{ steps.test-in-out-put.outputs.uesr-age }}
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      id: test-in-out-put
+      run: |
+        user-name=${{ inputs.user_name }}
+        echo 'user name is ' ${user-name}
+        age=99
+        echo 'uesr-age=${age}' >> $GITHUB_OUTPUT
+        

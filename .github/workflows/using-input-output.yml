@@ -1,0 +1,23 @@
+name: using-input-output
+on:
+  push:
+    branches:
+      - "main"
+  workflow_call:
+   
+jobs:
+  using-input:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: calling input action
+        uses: bruce1237/github-workflow-center/.github/actions/input-output@main
+
+  checking-output:
+    runs-on: ubuntu-latest
+    needs: using-input
+
+    steps:
+      - name: check out put
+        run: echo age is ${{needs.using-input.outputs.user_age}}
+    
