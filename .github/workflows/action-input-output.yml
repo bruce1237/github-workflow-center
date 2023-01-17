@@ -1,8 +1,5 @@
 name: using-input-output
 on:
-  push:
-    branches:
-      - "main"
   workflow_call:
    
 jobs:
