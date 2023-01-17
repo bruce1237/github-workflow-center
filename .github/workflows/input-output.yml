@@ -18,6 +18,7 @@ jobs:
 
       - name: check output same runner 
         run: echo age is ${{ steps.first-stp.outputs.random-number }}
+        
       - name: assign the step output to job output
         id: second-stp
         run: |
