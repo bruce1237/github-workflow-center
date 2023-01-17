@@ -18,5 +18,5 @@ jobs:
 
     steps:
       - name: check out put
-        run: echo age is ${{needs.using-input.outputs.user_age}}
+        run: echo age is ${{ needs.using-input.outputs.random-number }}
     

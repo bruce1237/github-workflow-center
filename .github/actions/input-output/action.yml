@@ -6,19 +6,14 @@ inputs:
     description: "the name of user"
 
 outputs:
-  user_age: 
-    description: 'the age of user'
-    value: ${{ steps.test-in-out-put.outputs.user_age }}
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-id }}
     
-
 runs:
-  using: composite
+  using: "composite"
   steps:
-    - shell: bash
-      id: test-in-out-put
-      run: |
-        userName=${{ inputs.user_name }}
-        echo 'user name is ' ${userName}
-        age=99
-        echo 'user_age=${age}' >> $GITHUB_OUTPUT
+    - id: random-number-generator
+      run: echo "random-id=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
         
