@@ -15,8 +15,8 @@ runs:
     - shell: bash
       id: test-in-out-put
       run: |
-        user-name=${{ inputs.user_name }}
-        echo 'user name is ' ${user-name}
+        userName=${{ inputs.user_name }}
+        echo 'user name is ' ${userName}
         age=99
-        echo 'uesr-age=${age}' >> $GITHUB_OUTPUT
+        echo 'user_age=${age}' >> $GITHUB_OUTPUT
         
