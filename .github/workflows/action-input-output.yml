@@ -8,12 +8,13 @@ jobs:
 
     steps:
       - name: calling input action
+        id: first-stp
         uses: bruce1237/github-workflow-center/.github/actions/input-output@main
         with:
           user_name: 'this-is-user-name-value'
 
       - name: check output same runner
-        run: echo age is ${{ steps.using-input.outputs.random-number }}
+        run: echo age is ${{ steps.first-stp.outputs.random-number }}
     
 
 
