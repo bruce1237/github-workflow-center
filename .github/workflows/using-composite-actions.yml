@@ -2,10 +2,6 @@ name: using composite actions
 on:
   workflow_dispatch:
   workflow_call:
-    inputs:
-      pass:
-        type: string
-        required: true
 
 jobs:
   using-composite-actions:
