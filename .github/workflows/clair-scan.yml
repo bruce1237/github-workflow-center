@@ -2,7 +2,7 @@ name: clair-scan
 on:
   workflow_call:
     inputs:
-      github_pass:
+      github_token:
         type: string
         required: true
       image_name:
@@ -22,7 +22,7 @@ jobs:
         id: clair-main-scan
         uses: bruce1237/github-workflow-center/.github/actions/clair-scan@main
         with:
-          github_token: ${{ inputs.github_pass }}
+          github_token: ${{ inputs.github_token }}
           image_name: ${{ inputs.image_name }}
           image_tag: ${{ inputs.image_tag }}
       
