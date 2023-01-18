@@ -8,6 +8,11 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: install go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.11' # The Go version to download (if necessary) and use.
+        
     - name: login to docker
       uses: bruce1237/github-workflow-center/.github/actions/docker-login@main
       with:
@@ -37,10 +42,7 @@ runs:
       shell: bash
       run: ls -lah
 
-    - name: install go
-      uses: actions/setup-go@v3
-      with:
-        go-version: '1.11' # The Go version to download (if necessary) and use.
+    
 
     - name: build
       shell: bash
