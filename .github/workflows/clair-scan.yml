@@ -26,17 +26,4 @@ jobs:
           image_name: ${{ inputs.image_name }}
           image_tag: ${{ inputs.image_tag }}
       
-      - name: upload artifact if scan fails
-        if: steps.clair-scan.outcome == 'failure'
-        uses: actions/upload-artifact@v3
-        with:
-          name: clair-artifact
-          path: |
-            scan-report.json
-            scan.log
-            clair-whitelist.yml
-          
-      - name: last step
-        shell: bash
-        run: ls -lah
-          
+      
