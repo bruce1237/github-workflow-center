@@ -48,7 +48,7 @@ runs:
 
     - name: install
       shell: bash
-      run: installLocal
+      run: make installLocal
 
     - name: scan
       shell: bash
