@@ -21,6 +21,14 @@ inputs:
 runs:
   using: composite
   steps:
+    
+    - name: check input
+      run: |
+        echo ${{ inputs.github_token }}
+        echo ${{ inputs.image_name }}
+        echo ${{ inputs.image_tag }}
+        echo ${{ inputs.clair_url }}
+
            
     - name: login to docker
       uses: bruce1237/github-workflow-center/.github/actions/docker-login@main
