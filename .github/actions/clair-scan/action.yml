@@ -33,6 +33,23 @@ runs:
       shell: bash
       run: ls -lah
 
+    - name: install go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '^1.13.1' # The Go version to download (if necessary) and use.
+
+    - name: build
+      shell: bash
+      run: make build
+
+    - name: install
+      shell: bash
+      run: installLocal
+
+    - name: scan
+      shell: bash
+      run: ./clair-scanner '${{ github.repository }}:${{ env.branch_name }}'
+
     - name: copy example-run.sh
       shell: bash
       run: |
