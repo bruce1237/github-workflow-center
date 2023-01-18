@@ -44,7 +44,7 @@ runs:
 
     - name: get chair-scan
       shell: bash
-      run: wget ${{ input.clair_url }}
+      run: wget ${{ inputs.clair_url }}
     
     - name: chmod
       shell: bash
