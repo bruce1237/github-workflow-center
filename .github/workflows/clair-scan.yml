@@ -23,4 +23,4 @@ jobs:
         with:
           github_token: ${{ inputs.github_token }}
           image_name: ${{ inputs.image_name }}
-          image_tag: ${{ inputs image_tag }}
+          image_tag: ${{ inputs.image_tag }}
