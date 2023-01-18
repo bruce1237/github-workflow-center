@@ -9,3 +9,5 @@ jobs:
    steps:
      - name: use clair-scan
        uses: bruce1237/github-workflow-center/.github/actions/clair-scan@main
+       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
