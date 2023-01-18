@@ -73,18 +73,4 @@ runs:
       continue-on-error: true
       run: ./clair-scanner --ip $(hostname -i) -r scan-report.json -l scan.log -w clair-whitelist.yml ${{ inputs.reg_url }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
 
-    - name: upload artifact if scan fails
-      shell: bash
-      if: steps.clair-scan.outcome == 'failure'
-      uses: actions/upload-artifact@v3
-      with:
-        name: clair-artifact
-        path: |
-          scan-report.json
-          scan.log
-          clair-whitelist.yml
-        
-    - name: last step
-      shell: bash
-      run: ls -lah
-        
+    
