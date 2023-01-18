@@ -23,6 +23,7 @@ runs:
   steps:
     
     - name: check input
+      shell: bash
       run: |
         echo ${{ inputs.github_token }}
         echo ${{ inputs.image_name }}
