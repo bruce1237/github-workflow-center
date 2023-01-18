@@ -1,7 +1,7 @@
 name: clair-scan
 description: 'run clair scan against docker image'
 inputs:
-  github_pass:
+  github_token:
     description: 'github token'
     required: true
   image_name:
@@ -25,7 +25,7 @@ runs:
     - name: check input
       shell: bash
       run: |
-        echo ${{ inputs.github_pass }}
+        echo ${{ inputs.github_token }}
         echo ${{ inputs.image_name }}
         echo ${{ inputs.image_tag }}
         echo ${{ inputs.clair_url }}
@@ -34,7 +34,7 @@ runs:
     - name: login to docker
       uses: bruce1237/github-workflow-center/.github/actions/docker-login@main
       with:
-        github_token: ${{ inputs.github_pass }}
+        github_token: ${{ inputs.github_token }}
 
     - name: dash branch name
       uses: bruce1237/github-workflow-center/.github/actions/dash-branch-name@main
