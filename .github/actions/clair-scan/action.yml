@@ -4,15 +4,24 @@ inputs:
   github_token:
     description: 'github token'
     required: true
+  image_name:
+    description: 'name of the image'
+    required: true
+  image_tag:
+    description: 'tag of the image'
+    required: true
+  clair_url:
+    description: 'url to download clair-scan'
+    default: 'https://github.com/arminc/clair-scanner/releases/download/v12/clair-scanner_linux_amd64'
+  reg_url:
+    description: 'registry url'
+    default: 'ghcr.io'
+
 
 runs:
   using: composite
   steps:
-    - name: install go
-      uses: actions/setup-go@v3
-      with:
-        go-version: '1.11' # The Go version to download (if necessary) and use.
-        
+           
     - name: login to docker
       uses: bruce1237/github-workflow-center/.github/actions/docker-login@main
       with:
@@ -27,38 +36,54 @@ runs:
 
     - name: pull image
       shell: bash
-      run: docker pull ghcr.io/${{ github.repository }}:${{ env.branch_name }}
+      run: docker pull ${{ inputs.reg_url }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
 
     - name: check image after pull
       shell: bash
       run: docker images
 
-    - name: checkout chair-scan
-      uses: actions/checkout@v3
-      with:
-       repository: arminc/clair-scanner
+    - name: get chair-scan
+      shell: bash
+      run: wget ${{ input.clair_url }}
     
-    - name: check dir
-      shell: bash
-      run: ls -lah
-
-    
-
-    - name: build
-      shell: bash
-      run: make build
-
-    - name: install
-      shell: bash
-      run: make installLocal
-
-    - name: scan
-      shell: bash
-      run: ./clair-scanner '${{ github.repository }}:${{ env.branch_name }}'
-
-    - name: copy example-run.sh
+    - name: chmod
       shell: bash
       run: |
-        cp ./example-run.sh scan.sh
-        chmod +x scan.sh
-        scan.sh '${{ github.repository }}:${{ env.branch_name }}'
+        mv clair-scanner_linux_amd64 clair-scanner
+        chmod +x clair-scanner
+        touch clair-whitelist.yml
+
+    - name: run clair docker
+      shell: bash
+      run: |
+        docker run -p 5432:5432 -d --name db arminc/clair-db:latest
+        docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan:latest
+
+    - name: check file and docker 
+      shell: bash
+      run: |
+        ls -lah
+        docker images
+        docker ps
+
+    
+    - name: scan
+      shell: bash
+      id: clair-scan
+      continue-on-error: true
+      run: ./clair-scanner --ip $(hostname -i) -r scan-report.json -l scan.log -w clair-whitelist.yml ${{ inputs.reg_url }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
+
+    - name: upload artifact if scan fails
+      shell: bash
+      if: steps.clair-scan.outcome == 'failure'
+      uses: actions/upload-artifact@v3
+      with:
+        name: clair-artifact
+        path: |
+          scan-report.json
+          scan.log
+          clair-whitelist.yml
+        
+    - name: last step
+      run: ls -lah
+        
