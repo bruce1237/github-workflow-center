@@ -74,7 +74,6 @@ runs:
       run: ./clair-scanner --ip $(hostname -i) -r scan-report.json -l scan.log -w clair-whitelist.yml ${{ inputs.reg_url }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
 
     - name: upload artifact if scan fails
-      shell: bash
       if: steps.clair-scan.outcome == 'failure'
       uses: actions/upload-artifact@v3
       with:
