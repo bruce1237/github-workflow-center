@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo hello
-        run: echo hello
+        run: echo hello - ${{ inputs.env_name }}
    
 
   test-env-deploy:
@@ -29,4 +29,4 @@ jobs:
     environment: ${{ inputs.env_name }}
     steps:
       - name: test env
-        run: echo "ENV pending"
+        run: echo "ENV pending" - ${{ inputs.env_name }}
