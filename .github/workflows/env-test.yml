@@ -6,6 +6,14 @@ on:
         type: string
         required: true
         description: 'the name of the env in repo settings'
+  workflow_dispatch:
+    inputs:
+      env_name:
+        type: string
+        required: true
+        description: 'the name of the env in repo settings'
+
+
 
 jobs:
   do-something:
