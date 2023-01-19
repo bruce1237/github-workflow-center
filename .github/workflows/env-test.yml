@@ -27,3 +27,6 @@ jobs:
     needs: do-something
     runs-on: ubuntu-latest
     environment: ${{ inputs.env_name }}
+    steps:
+      - name: test env
+        run: echo "ENV pending"
