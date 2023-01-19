@@ -1,0 +1,21 @@
+name: test env deploy
+on:
+  workflow_call:
+    inputs:
+      env_name:
+        type: string
+        required: true
+        description: 'the name of the env in repo settings'
+
+jobs:
+  do-something:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo hello
+        run: echo hello
+   
+
+  test-env-deploy:
+    needs: do-something
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env_name }}
