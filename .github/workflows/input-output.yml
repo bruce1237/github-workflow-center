@@ -21,6 +21,10 @@ jobs:
         with:
           user_name: 'this-is-user-name-value'
 
+      - name: test-default
+        uses: bruce1237/github-workflow-center/.github/actions/input-output@main
+
+
       - name: check output same runner 
         run: echo age is ${{ steps.first-stp.outputs.random-number }}
 
