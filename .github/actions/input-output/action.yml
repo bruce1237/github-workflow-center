@@ -4,6 +4,7 @@ description: 'test action input output'
 inputs:
   user_name:
     description: "the name of user"
+    default: ${{ github.actor }}
 
 outputs:
   random-number:
