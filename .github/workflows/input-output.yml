@@ -6,6 +6,10 @@ on:
         description: "this is the input"
         required: false
         type: string
+      branch_name:
+        description: "the workflow branch"
+        required: true
+        type: string
    
 jobs:
   using-input:
@@ -17,12 +21,12 @@ jobs:
     steps:
       - name: calling input action
         id: first-stp
-        uses: bruce1237/github-workflow-center/.github/actions/input-output@main
+        uses: bruce1237/github-workflow-center/.github/actions/input-output@${{ inputs.branch_name }}
         with:
           user_name: 'this-is-user-name-value'
 
       - name: test-default
-        uses: bruce1237/github-workflow-center/.github/actions/input-output@main
+        uses: bruce1237/github-workflow-center/.github/actions/input-output${{ inputs.branch_name }}
 
 
       - name: check output same runner 

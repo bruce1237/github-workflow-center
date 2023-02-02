@@ -18,6 +18,6 @@ runs:
       run: echo "random-id=$(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
 
-    - run: echo ${{ inputs.user_name }}
+    - run: echo ${{ inputs.user_name }} FROM myTest branch
       shell: bash
         
