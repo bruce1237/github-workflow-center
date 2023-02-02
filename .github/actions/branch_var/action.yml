@@ -1,0 +1,13 @@
+name: branch_var_action
+description: "check if the branch can be using variable to replace"
+
+inputs:
+  branch_name:
+    description: "branch to runs on"
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: echo ${{inputs.branch_name}}
+      

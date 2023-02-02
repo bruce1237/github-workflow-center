@@ -1,0 +1,22 @@
+name: test-branch-in-var
+on:
+  workflow_call:
+    inputs:
+      branch_name:
+       description: "the name of the branch to run"
+       required: true
+       default: main
+       type: string
+
+jobs:
+  running-on-branch:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: calling composite action
+        uses: bruce1237/github-workflow-center/.github/actions/branch_var@${{inputs.branch_name}}
+        with:
+          branch_name: ${{ inputs.branch_name }}
+
+   
