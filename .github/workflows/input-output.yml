@@ -21,12 +21,12 @@ jobs:
     steps:
       - name: calling input action
         id: first-stp
-        uses: bruce1237/github-workflow-center/.github/actions/input-output@${{ inputs.branch_name }}
+        uses: bruce1237/github-workflow-center/.github/actions/input-output@${{inputs.branch_name}}
         with:
           user_name: 'this-is-user-name-value'
 
       - name: test-default
-        uses: bruce1237/github-workflow-center/.github/actions/input-output${{ inputs.branch_name }}
+        uses: bruce1237/github-workflow-center/.github/actions/input-output${{inputs.branch_name}}
 
 
       - name: check output same runner 
