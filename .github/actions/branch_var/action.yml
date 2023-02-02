@@ -9,5 +9,6 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: echo ${{inputs.branch_name}}
-      
+      run: echo ABC${{inputs.branch_name}}DEF
+    - shell: bash
+      run: echo ABC${{ inputs.branch_name }}DEF
