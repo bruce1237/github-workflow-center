@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: calling composite action
-        uses: bruce1237/github-workflow-center/.github/actions/branch_var@myTest
+        uses: bruce1237/github-workflow-center/.github/actions/branch_var@${{inputs.branch_name}}
         with:
           branch_name: ${{ inputs.branch_name }}
 
