@@ -1,4 +1,19 @@
 name: env_test
 on:
   workflow_call:
-    
+    inputs:
+      my_name:
+        description: caller input
+        type: string
+      my_age:
+        description: caller input
+        type: string
+
+
+jobs:
+  testEnv:
+   runs-on: ubuntu-latest
+   steps:
+     - name: check input
+       run: |
+        echo my_name: ${{ inputs.my_name }} , my_age: ${{ inputs.my_age }}
