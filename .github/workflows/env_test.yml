@@ -16,4 +16,4 @@ jobs:
    steps:
      - name: check input
        run: |
-        echo my_name: ${{ inputs.my_name }} , my_age: ${{ inputs.my_age }}
+        echo my_name: ${{ inputs.my_name }} , my_age: ${{ inputs.my_age }} my se ${{ secrets.MY_SE }} lala
